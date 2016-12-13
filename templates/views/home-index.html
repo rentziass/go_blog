@@ -2,7 +2,7 @@
 <div class="main-menu">
   <a href="/posts/new" role="button" class="btn col-lg-6 col-lg-offset-3 primary">Nuovo post</a>
   {{range .Posts}}
-    <a href="/posts/{{.ID}}" role="button" class="btn col-lg-6 col-lg-offset-3 primary">{{.Title}}</a>
+    <a href="/posts/{{.Id}}" role="button" class="btn col-lg-6 col-lg-offset-3 primary">{{.Title}}</a>
   {{end}}
 </div>
 {{template "pageEnd.html" .}}

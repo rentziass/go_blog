@@ -7,7 +7,6 @@ import (
 )
 
 func registerPostsRoutes(r *gin.Engine) {
-	r.GET("/posts/new", controllers.PostsNew)
-
 	r.POST("/posts", controllers.PostsCreate)
+	r.GET("/posts/:id", controllers.PostsShow)
 }
