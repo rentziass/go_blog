@@ -1,0 +1,2 @@
+# Creazione migrazione
+gomigrate -url="postgres://francescorenzi@localhost:5432/go_blog?sslmode=disable" -path ./migrations create create_posts
