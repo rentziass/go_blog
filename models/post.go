@@ -43,12 +43,23 @@ func (p *Post) SetBody(value string) {
 
 // Save salva un nuovo Post in DB
 func (p Post) Save() {
-	// db, err := getDBConnection()
-	// if err == nil {
-	// 	defer db.Close()
-	// } else {
-	//
+	db, err := getDBConnection()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	res, insertErr := db.Exec("INSERT INTO posts(title, body) VALUES ($1, $2)", p.title, p.body)
+	if insertErr != nil {
+		log.Fatal(insertErr)
+	}
+
+	// res, err := stmt.Exec(p.Title(), p.Body())
+	// res, err := stmt.Exec()
+	// if err != nil {
+	// 	log.Fatal(err)
 	// }
+	log.Print(res)
+	defer db.Close()
 }
 
 // GetPosts ritorna tutti i post presenti in db
@@ -68,7 +79,7 @@ func GetPosts() ([]Post, error) {
 			if scanErr != nil {
 				log.Fatal(scanErr)
 			} else {
-				posts[len(posts)] = post
+				posts = append(posts, post)
 			}
 		}
 		err = rows.Err()
